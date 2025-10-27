@@ -1,4 +1,6 @@
 "use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import { useSidebar } from "@/contexts/SidebarContext"
 import Link from "next/link"
@@ -7,24 +9,35 @@ import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import LockRoundedIcon from '@mui/icons-material/LockRounded';
 import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 import PersonalInfo from "@/components/pages/profile/Personal";
 export default function UserProfile(){
     const {isOpen} = useSidebar()
+    const [sidebarOpen, setSidebarOpen] = useState<boolean>(false)
+
+    const toggleSidebarOpen = () =>{
+        setSidebarOpen((prev) =>!prev)
+    }
     return(
         <>
             <div className={`md:min-h-screen bg-gray-200 md:pt-20 overflow-scroll transition-all duration-700 ease-in-out ${isOpen?"md:ml-84 ml-0ss":"ml-0 md:ml-18"}`}>
-                <div className={`h-screen bg-gray-200 flex flex-col gap-2 fixed right-1 overflow-scroll pb-22 transition-all duration-700 ease-in-out ${isOpen?"md:left-84 left-0":"md:left-18 left-0"}`}>
-                    <div className="mx-auto w-[80%] h-full flex items-start justify-between gap-4">
+                <div className={`h-screen bg-gray-200 flex flex-col gap-2 fixed right-1 overflow-scroll md:pb-22 pb-18 transition-all duration-700 ease-in-out ${isOpen?"md:left-84 left-0":"md:left-18 left-0"}`}>
+                    <div className="mx-auto w-full md:w-[80%] h-full flex items-start justify-between gap-4 p-1">
                         {/* sidebar */}
-                        <div className="w-[30%] flex flex-col items-start rounded dhadow bg-white h-full p-2">
-                            <div className="w-full h-46 relative rounded-full overflow-hidden">
+                        <div className={`w-3/4 md:w-[30%] fixed md:relative md:flex flex-col items-start rounded shadow bg-white h-full p-2 transition-all duration-700 ease-in-out ${sidebarOpen ? "left-0 md:clear-left":"-left-[500px] md:left-0"}`}>
+                            <div className="w-full h-46 relative rounded-full ">
                                 <Image
                                     src="/user.png"
                                     fill
                                     alt="user"
                                     className="object-center object-contain"
                                 />
+                                <button
+                                onClick={toggleSidebarOpen}
+                                className="absolute md:hidden w-10 h-10 rounded bg-gray-500 top-0 right-0 flex items-center justify-center">
+                                    <CloseRoundedIcon className="text-orange-600 text-[28px]!"/>
+                                </button>
                             </div>
                             <div className="w-full">
                                 <h1 className="text-black font-extrabold text-[20px] text-center">RedHat_109</h1>
@@ -54,7 +67,9 @@ export default function UserProfile(){
 
                         <div className="flex-1 flex flex-col items-start rounded shadow bg-white h-full p-2 px-4">
                             <div className="w-full flex items-center justify-start">
-                                <button className="cursor-pointer flex items-center justify-center hover:text-orange-600">
+                                <button
+                                onClick={toggleSidebarOpen}
+                                className="cursor-pointer flex md:hidden items-center justify-center hover:text-orange-600">
                                     <WidgetsRoundedIcon className="text-[30px]!"/>
                                 </button>
                             </div>
