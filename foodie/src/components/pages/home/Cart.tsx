@@ -4,6 +4,8 @@ import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import QueryBuilderRoundedIcon from '@mui/icons-material/QueryBuilderRounded';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 interface CartItem{
     id:number | string;
     label:string;
@@ -35,7 +37,7 @@ export default function Cart({items,onDecrease,onIncrease,onRemove}:CartProps){
                     <div className="w-6 h-6  rounded-md">
                         <LocationOnRoundedIcon className="text-gray-400" />
                     </div>
-                    <p className="text-gray-500 text-sm">Lorem ipsum dolor sit, amet consectetur.</p>
+                    <p className="text-gray-500 text-sm">Kisumu ndogo, West gate, door-16</p>
                 </div>
                 <div className="w-full flex items-center justify-start gap-3 mt-1">
                     <div className="w-6 h-6 rounded-md">
@@ -83,9 +85,13 @@ export default function Cart({items,onDecrease,onIncrease,onRemove}:CartProps){
                             </div>
                             <div className="flex .ite"></div><div className="w-18 mr-2">
                                 <div className="flex items-center gap-2 justify-start">
-                                    <button onClick={() => onDecrease(item.id)} className="w-6 h-6 rounded-full bg-gray-300 cursor-pointer hover:bg-[orangered]"></button>
+                                    <button onClick={() => onDecrease(item.id)} className="group w-6 h-6 rounded-full bg-gray-300 cursor-pointer hover:bg-[orangered] flex item-center justify-center">
+                                        <RemoveIcon className="group-hover:text-white"/>
+                                    </button>
                                     <span className="text-black">{item.quantity}</span>
-                                    <button onClick={() => onIncrease(item.id)} className="w-6 h-6 rounded-full bg-gray-300 cursor-pointer hover:bg-[orangered]"></button>
+                                    <button onClick={() => onIncrease(item.id)} className="group w-6 h-6 rounded-full bg-gray-300 cursor-pointer hover:bg-[orangered] flex item-center justify-center">
+                                        <AddIcon className="group-hover:text-white"/>
+                                    </button>
                                 </div>
                             </div>
                             <div className="flex items-center justify-end">

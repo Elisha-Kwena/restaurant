@@ -53,7 +53,7 @@ export default function SignIn(){
                 <div className="w-full">
                     <div className="w-full flex items-center justify-between">
                         <h1 className="text-white font-extrabold text-lg md:text-[24px]">Login to Your Account</h1>
-                        <div className="w-14 h-14 relative">
+                        <div className="w-14 h-14 md:hidden relative">
                             <Image
                                 src="/icons/logo.png"
                                 fill
